@@ -1,5 +1,5 @@
 'use client';
-import { Share2, Globe, Code, Briefcase, Github, Instagram, ComputerIcon  } from 'lucide-react'
+import { Share2, Globe, Code, Briefcase, Github, Instagram, } from 'lucide-react'
 import { FaJs, FaReact, FaPython, FaDatabase,FaSteam,FaDiscord } from 'react-icons/fa'
 import { SiTypescript, SiNodedotjs } from 'react-icons/si'
 import Image from "next/image"
@@ -199,7 +199,6 @@ export  function BioPage() {
 }
 
 function SocialCard({
-  platform,
   username,
   link,
   description,

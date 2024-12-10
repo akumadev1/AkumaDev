@@ -213,20 +213,20 @@ export function BioPage() {
           </div>
         )}
       </div>
-      <div className="flex justify-center gap-4 md:gap-8 mt-8 mb-4">
+      <div className="flex justify-center gap-8 mt-8" style={{ marginBottom: '-4px' }}>
         <Image
           src="/logo1.svg"
           alt="Logo 1"
           width={140}
           height={140}
-          className="h-[70px] md:h-[140px]  opacity-25 hover:opacity-100 transition-opacity duration-300"
+          className="h-[140px]  opacity-25 hover:opacity-100 transition-opacity duration-300"
         />
         <Image
           src="/logo2.svg"
           alt="Logo 2"
           width={140}
           height={140}
-          className="h-[70px] md:h-[140px]  opacity-25 hover:opacity-100 transition-opacity duration-300"
+          className="h-[140px]  opacity-25 hover:opacity-100 transition-opacity duration-300"
         />
       </div>
     </div>

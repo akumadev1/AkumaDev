@@ -106,7 +106,7 @@ export function BioPage() {
             <SocialCard
               platform="Steam"
               username="uwusnaania123"
-              link="steamcommunity.com/profiles/76561198200762718/"
+              link="steamcommunity.com/id/akuma21337"
               description="Check out my game library"
               icon={<FaSteam className="h-6 w-6" />}
             />
@@ -219,14 +219,14 @@ export function BioPage() {
           alt="Logo 1"
           width={140}
           height={140}
-          className="h-[70px] md:h-[140px] w-auto opacity-25 hover:opacity-100 transition-opacity duration-300"
+          className="h-[70px] md:h-[140px]  opacity-25 hover:opacity-100 transition-opacity duration-300"
         />
         <Image
           src="/logo2.svg"
           alt="Logo 2"
           width={140}
           height={140}
-          className="h-[70px] md:h-[140px] w-auto opacity-25 hover:opacity-100 transition-opacity duration-300"
+          className="h-[70px] md:h-[140px]  opacity-25 hover:opacity-100 transition-opacity duration-300"
         />
       </div>
     </div>

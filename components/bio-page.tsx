@@ -1,16 +1,19 @@
 'use client';
-import { Share2, Globe, Code, Briefcase, Github, Instagram, } from 'lucide-react'
-import { FaJs, FaReact, FaPython, FaDatabase,FaSteam,FaDiscord } from 'react-icons/fa'
+import { Share2, Globe, Code, Briefcase, Github, Instagram, Menu } from 'lucide-react'
+import { FaJs, FaReact, FaPython, FaDatabase, FaSteam, FaDiscord } from 'react-icons/fa'
 import { SiTypescript, SiNodedotjs } from 'react-icons/si'
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from 'react'
 
-export  function BioPage() {
+export function BioPage() {
   const [activeSection, setActiveSection] = useState('social')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   return (
-    <div className="min-h-screen  to-black text-white" id="animated-bg">
+    <div className="min-h-screen to-black text-white" id="animated-bg">
       <div className="mx-auto max-w-2xl px-4 py-8">
         {/* Profile Section */}
         <div className="relative mb-8 flex flex-col items-center">
@@ -38,8 +41,41 @@ export  function BioPage() {
           </p>
         </div>
 
-        {/* Navigation */}
-        <nav className="mb-8 flex justify-center gap-6 text-gray-400">
+        {/* Mobile Navigation */}
+        <div className="md:hidden mb-4">
+          <button onClick={toggleMenu} className="w-full py-2 px-4 bg-zinc-800 rounded-lg flex items-center justify-between">
+            <span>{activeSection === 'social' ? 'Social media' :
+                   activeSection === 'about' ? 'About' :
+                   activeSection === 'languages' ? 'Knowledge' : 'Projects'}
+            </span>
+            <Menu className="h-5 w-5" />
+          </button>
+          {isMenuOpen && (
+            <div className="mt-2 bg-zinc-800 rounded-lg overflow-hidden">
+              {['social', 'about', 'languages', 'projects'].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => {
+                    setActiveSection(section)
+                    setIsMenuOpen(false)
+                  }}
+                  className={`w-full py-2 px-4 text-left ${
+                    activeSection === section
+                      ? 'bg-zinc-700'
+                      : 'hover:bg-zinc-700'
+                  }`}
+                >
+                  {section === 'social' ? 'Social media' :
+                   section === 'about' ? 'About' :
+                   section === 'languages' ? 'Knowledge' : 'Projects'}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex mb-8 justify-center gap-6 text-gray-400">
           {['social', 'about', 'languages', 'projects'].map((section) => (
             <button
               key={section}
@@ -95,7 +131,7 @@ export  function BioPage() {
           <div className="rounded-lg bg-zinc-800/50 p-6 backdrop-blur-sm">
             <h2 className="mb-4 text-xl font-bold flex items-center"><Globe className="mr-2" /> About</h2>
             <p className="text-gray-300">
-          Lorem ipsum 😜
+              Lorem ipsum 😜
             </p>
           </div>
         )}
@@ -177,24 +213,23 @@ export  function BioPage() {
           </div>
         )}
       </div>
-      <div className="flex justify-center gap-8 mt-8" style={{ marginBottom: '-4px' }}>
+      <div className="flex justify-center gap-4 md:gap-8 mt-8 mb-4">
         <Image
           src="/logo1.svg"
           alt="Logo 1"
           width={140}
           height={140}
-          className="h-[140px]  opacity-25 hover:opacity-100 transition-opacity duration-300"
+          className="h-[70px] md:h-[140px] w-auto opacity-25 hover:opacity-100 transition-opacity duration-300"
         />
         <Image
           src="/logo2.svg"
           alt="Logo 2"
           width={140}
           height={140}
-          className="h-[140px]  opacity-25 hover:opacity-100 transition-opacity duration-300"
+          className="h-[70px] md:h-[140px] w-auto opacity-25 hover:opacity-100 transition-opacity duration-300"
         />
       </div>
     </div>
-    
   )
 }
 
@@ -218,7 +253,7 @@ function SocialCard({
       <div className="flex-grow">
         <h3 className="font-bold">{username}</h3>
         <p className="text-sm text-gray-400">{link}</p>
-        <p className="mt-1 text-sm text-gray-300">{description}</p>
+        <p className="mt-1 text-sm text-gray-300 hidden md:block">{description}</p>
       </div>
       <Link href={`https://${link}`} className="ml-2">
         <Share2 className="h-5 w-5 text-white/60" />
@@ -251,7 +286,7 @@ function ProjectCard({
           className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
         />
       </div>
-      <div className="p-6">
+      <div className="p-4 md:p-6">
         <h3 className="mb-2 text-lg font-bold">{title}</h3>
         <p className="mb-4 text-sm text-gray-300">{description}</p>
         <div className="mb-4 flex flex-wrap gap-2">
@@ -293,7 +328,7 @@ function LanguageCard({
       </div>
       <div>
         <h3 className="font-bold text-lg mb-1">{name}</h3>
-        <p className="text-sm text-gray-300 mb-2">{description}</p>
+        <p className="text-sm text-gray-300 mb-2 hidden md:block">{description}</p>
         <div className="text-xs text-gray-400">
           <p>{experience}</p>
           <p>{projects}</p>

@@ -1,6 +1,6 @@
 'use client';
-import { Share2, Globe, Code, Briefcase, Github, Instagram, Menu } from 'lucide-react'
-import { FaJs, FaReact, FaPython, FaDatabase, FaSteam, FaDiscord } from 'react-icons/fa'
+import { Share2, Globe, Code, Briefcase, Github, Menu } from 'lucide-react'
+import { FaJs, FaReact, FaSteam, FaDiscord } from 'react-icons/fa'
 import { SiTypescript, SiNodedotjs } from 'react-icons/si'
 import Image from "next/image"
 import Link from "next/link"
@@ -18,23 +18,45 @@ export function BioPage() {
         {/* Profile Section */}
         <div className="relative mb-8 flex flex-col items-center">
           <div className="absolute right-0 top-0">
-            <a href='#'><Share2 className="h-6 w-6 text-white/60" /></a>
+          <button
+  onClick={() => {
+    if (navigator.share) {
+      navigator.share({
+        title: '@akumadev - Bio Page',
+        url: window.location.href
+      }).then(() => {
+        console.log('Thanks for sharing!');
+      }).catch(console.error);
+    } else {
+      // Fallback for browsers that don't support Web Share API
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        alert('Profile link copied to clipboard!');
+      }, (err) => {
+        console.error('Could not copy text: ', err);
+      });
+    }
+  }}
+  className="p-2 rounded-full  transition-colors"
+>
+  <Share2 className="h-6 w-6 text-white/60" />
+</button>
           </div>
           <div className="relative">
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 opacity-75 blur-lg animate-gradient"></div>
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-red-500 via-gray-800 to-red-900 opacity-85 blur-lg animate-gradient"></div>
             <div className="relative h-32 w-32 overflow-hidden rounded-full ring-2 ring-zinc-800">
               <Image
-                src="/avi.jpg"
+                src="/avi.gif"
                 alt="Profile"
                 width={128}
                 height={128}
-                className="object-cover"
+                className="object-cover w-full h-full"
                 priority
               />
             </div>
           </div>
           <h1 className="mt-4 text-2xl font-bold">
-            <span className="text-[#00FF00]">@</span>akumadev
+            <span className="text-red-800">@</span>akumadev
           </h1>
           <p className="text-sm text-gray-400">
             Contact: xaanarii@gmail.com
@@ -99,7 +121,7 @@ export function BioPage() {
             <SocialCard
               platform="Discord"
               username="allvaez"
-              link="discord.gg/"
+              link="https://discordapp.com/users/allvaez"
               description="Contact me"
               icon={<FaDiscord className="h-6 w-6" />}
             />
@@ -117,13 +139,6 @@ export function BioPage() {
               description="View my projects and contributions"
               icon={<Github className="h-6 w-6" />}
             />
-            <SocialCard
-              platform="Instagram"
-              username="rvnzxsu"
-              link="instagram.com/rvnzxsu"
-              description="There's nothing there"
-              icon={<Instagram className="h-6 w-6" />}
-            />
           </div>
         )}
 
@@ -131,7 +146,7 @@ export function BioPage() {
           <div className="rounded-lg bg-zinc-800/50 p-6 backdrop-blur-sm">
             <h2 className="mb-4 text-xl font-bold flex items-center"><Globe className="mr-2" /> About</h2>
             <p className="text-gray-300">
-              Lorem ipsum 😜
+              ...
             </p>
           </div>
         )}
@@ -144,43 +159,29 @@ export function BioPage() {
                 icon={<FaJs className="text-yellow-400" />}
                 name="JavaScript"
                 description="Main Language"
-                experience="3 years of experience"
+                experience="3 years of non commercial experience"
                 projects="6+ projects"
               />
               <LanguageCard
                 icon={<SiTypescript className="text-blue-400" />}
                 name="TypeScript"
                 description="Currently Learning"
-                experience="1 year of experience"
+                experience="1 year of non commercial experience"
                 projects="2+ projects"
               />
               <LanguageCard
                 icon={<FaReact className="text-cyan-400" />}
                 name="React"
                 description="Best JS Framework"
-                experience="1.5 year of experience"
+                experience="1.5 year of non commercial experience"
                 projects="10+ projects"
               />
               <LanguageCard
                 icon={<SiNodedotjs className="text-green-500" />}
                 name="Node.js"
                 description="Best server based framework"
-                experience="1 year of experience"
+                experience="1 year of non commercial experience"
                 projects="2 projects"
-              />
-              <LanguageCard
-                icon={<FaPython className="text-blue-500" />}
-                name="Python"
-                description="Currently Learning"
-                experience="0 years of experience"
-                projects="N/A projects"
-              />
-              <LanguageCard
-                icon={<FaDatabase className="text-gray-400" />}
-                name="SQL"
-                description="Currently Learning"
-                experience="0 years of experience"
-                projects="N/A projects"
               />
             </div>
           </div>
@@ -214,20 +215,7 @@ export function BioPage() {
         )}
       </div>
       <div className="flex justify-center gap-8 mt-8" style={{ marginBottom: '-4px' }}>
-        <Image
-          src="/logo1.svg"
-          alt="Logo 1"
-          width={140}
-          height={140}
-          className="h-[140px]  opacity-25 hover:opacity-100 transition-opacity duration-300"
-        />
-        <Image
-          src="/logo2.svg"
-          alt="Logo 2"
-          width={140}
-          height={140}
-          className="h-[140px]  opacity-25 hover:opacity-100 transition-opacity duration-300"
-        />
+        <p className='text-xs'>© Akumadev 2024. Icons powered by <a className='text-red-800' target='_blank' href='https://lucide.dev/guide/packages/lucide-react'>Lucide-React</a> and <a target='_blank' className='text-red-800' href='https://react-icons.github.io/react-icons/'>React-Icons</a></p>
       </div>
     </div>
   )
@@ -246,6 +234,7 @@ function SocialCard({
   icon: React.ReactNode
 }) {
   return (
+    <Link href={`https://${link}`} className="ml-2">
     <div className="group flex items-center gap-4 rounded-lg bg-zinc-800/50 p-4 backdrop-blur-sm transition-all hover:bg-zinc-800">
       <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-zinc-900/50 transition-all group-hover:bg-zinc-900">
         {icon}
@@ -255,10 +244,8 @@ function SocialCard({
         <p className="text-sm text-gray-400">{link}</p>
         <p className="mt-1 text-sm text-gray-300 hidden md:block">{description}</p>
       </div>
-      <Link href={`https://${link}`} className="ml-2">
-        <Share2 className="h-5 w-5 text-white/60" />
-      </Link>
     </div>
+    </Link>
   )
 }
 

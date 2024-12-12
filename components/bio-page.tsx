@@ -121,7 +121,7 @@ export function BioPage() {
             <SocialCard
               platform="Discord"
               username="allvaez"
-              link="https://discordapp.com/users/allvaez"
+              link="discordapp.com/users/allvaez"
               description="Contact me"
               icon={<FaDiscord className="h-6 w-6" />}
             />

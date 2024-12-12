@@ -198,6 +198,13 @@ export function BioPage() {
               repoLink="https://github.com/akumadev1/hydra"
             />
             <ProjectCard
+              title="Fire industry company website"
+              description="Designed but never used(All trademarks are used in representative purpose) "
+              image="/projects/ppoz.png"
+              languages={['React', 'Next.js', 'TailwindCSS','Node.js']}
+              repoLink="https://github.com/akumadev1/ppoz"
+            />
+            <ProjectCard
               title="DistroNavigator"
               description="List of Linux Distro's"
               image="/projects/linux.png"

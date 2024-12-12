@@ -127,7 +127,7 @@ export function BioPage() {
             />
             <SocialCard
               platform="Steam"
-              username="uwusnaania123"
+              username="akuma"
               link="steamcommunity.com/id/akuma21337"
               description="Check out my game library"
               icon={<FaSteam className="h-6 w-6" />}

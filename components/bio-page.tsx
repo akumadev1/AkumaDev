@@ -46,7 +46,7 @@ export function BioPage() {
             <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-red-500 via-gray-800 to-red-900 opacity-85 blur-lg animate-gradient"></div>
             <div className="relative h-32 w-32 overflow-hidden rounded-full ring-2 ring-zinc-800">
               <Image
-                src="/avi.gif"
+                src="/avi.jpg"
                 alt="Profile"
                 width={128}
                 height={128}

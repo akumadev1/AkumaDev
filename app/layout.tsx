@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import AnimatedTitle from "../components/AnimatedTitle"
+import TitleBar from "../components/AnimatedTitle"
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         
-      <AnimatedTitle />
+      <TitleBar />
       <link rel="shortcut icon" href="./icon.png" type="image/x-icon" />
       </head>
       <body

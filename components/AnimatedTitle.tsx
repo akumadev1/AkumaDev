@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const encryptionChars = ['$', '%', '*', '#', '@', '!', '&', '^', '~', '`', '+', '=', '|', '<', '>', '?'];
 
@@ -8,15 +8,14 @@ const TitleBar = () => {
   const [title, setTitle] = useState("");
   const fullText = "AkumaDev";
 
-  useEffect(() => {
+  const getRandomEncryptionChar = useCallback(() => encryptionChars[Math.floor(Math.random() * encryptionChars.length)], []);
+
+  const updateTitle = useCallback(() => {
     let currentIndex = 0;
     let direction = 1; 
     let encryptionStage = 0;
-    let intervalId: NodeJS.Timeout;
 
-    const getRandomEncryptionChar = () => encryptionChars[Math.floor(Math.random() * encryptionChars.length)];
-
-    const updateTitle = () => {
+    return () => {
       if (currentIndex === fullText.length && direction === 1) {
         direction = -1;
         encryptionStage = 3; 
@@ -29,18 +28,21 @@ const TitleBar = () => {
       
       for (let i = 0; i < fullText.length; i++) {
         if (i < currentIndex) {
+          
           if (encryptionStage > 0 && Math.random() < 0.3) {
             newTitle += getRandomEncryptionChar();
           } else {
             newTitle += fullText[i];
           }
         } else if (i === currentIndex) {
+         
           if (direction === 1) {
             newTitle += getRandomEncryptionChar();
           } else if (encryptionStage > 0) {
             newTitle += getRandomEncryptionChar();
           }
         } else {
+          
           if (encryptionStage > 1 && Math.random() < 0.5) {
             newTitle += getRandomEncryptionChar();
           } else if (encryptionStage > 2) {
@@ -59,11 +61,12 @@ const TitleBar = () => {
         if (currentIndex % 3 === 0) encryptionStage = Math.max(encryptionStage - 1, 0);
       }
     };
+  }, [fullText, getRandomEncryptionChar]);
 
-    intervalId = setInterval(updateTitle, 400);
-
+  useEffect(() => {
+    const intervalId = setInterval(updateTitle(), 200);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [updateTitle]);
 
   useEffect(() => {
     document.title = title;

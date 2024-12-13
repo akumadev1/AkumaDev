@@ -12,12 +12,10 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
-
 export const metadata: Metadata = {
   title: "AkumaDev",
   description: "About Page",
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,13 +24,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        
-      <TitleBar />
-      <link rel="shortcut icon" href="./icon.png" type="image/x-icon" />
+      <TitleBar/>
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>

@@ -1,7 +1,7 @@
 'use client';
 import { Share2, Globe, Code, Briefcase, Github, Menu } from 'lucide-react'
-import { FaJs, FaReact, FaSteam, FaDiscord } from 'react-icons/fa'
-import { SiTypescript, SiNodedotjs } from 'react-icons/si'
+import { FaJs, FaReact, FaSteam, FaDiscord,FaFigma,FaSoundcloud } from 'react-icons/fa'
+import { SiTypescript, SiNextdotjs } from 'react-icons/si'
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from 'react'
@@ -9,16 +9,13 @@ import { useState } from 'react'
 export function BioPage() {
   const [activeSection, setActiveSection] = useState('social')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
-
   return (
     <div className="min-h-screen to-black text-white" id="animated-bg">
       <div className="mx-auto max-w-2xl px-4 py-8">
-        {/* Profile Section */}
         <div className="relative mb-8 flex flex-col items-center">
           <div className="absolute right-0 top-0">
-          <button
+          <button aria-label='share'
   onClick={() => {
     if (navigator.share) {
       navigator.share({
@@ -28,7 +25,6 @@ export function BioPage() {
         console.log('Thanks for sharing!');
       }).catch(console.error);
     } else {
-      // Fallback for browsers that don't support Web Share API
       const url = window.location.href;
       navigator.clipboard.writeText(url).then(() => {
         alert('Profile link copied to clipboard!');
@@ -46,7 +42,7 @@ export function BioPage() {
             <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-red-500 via-gray-800 to-red-900 opacity-85 blur-lg animate-gradient"></div>
             <div className="relative h-32 w-32 overflow-hidden rounded-full ring-2 ring-zinc-800">
               <Image
-                src="/avi.jpg"
+                src="/avi.webp"
                 alt="Profile"
                 width={128}
                 height={128}
@@ -62,8 +58,6 @@ export function BioPage() {
             Contact: xaanarii@gmail.com
           </p>
         </div>
-
-        {/* Mobile Navigation */}
         <div className="md:hidden mb-4">
           <button onClick={toggleMenu} className="w-full py-2 px-4 bg-zinc-800 rounded-lg flex items-center justify-between">
             <span>{activeSection === 'social' ? 'Social media' :
@@ -95,8 +89,6 @@ export function BioPage() {
             </div>
           )}
         </div>
-
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex mb-8 justify-center gap-6 text-gray-400">
           {['social', 'about', 'languages', 'projects'].map((section) => (
             <button
@@ -114,20 +106,18 @@ export function BioPage() {
             </button>
           ))}
         </nav>
-
-        {/* Content Cards */}
         {activeSection === 'social' && (
           <div className="space-y-4">
             <SocialCard
               platform="Discord"
               username="allvaez"
-              link="discordapp.com/users/allvaez"
+              link="https://discordapp.com/users/allvaez"
               description="Contact me"
               icon={<FaDiscord className="h-6 w-6" />}
             />
             <SocialCard
               platform="Steam"
-              username="akuma"
+              username="uwusnaania123"
               link="steamcommunity.com/id/akuma21337"
               description="Check out my game library"
               icon={<FaSteam className="h-6 w-6" />}
@@ -139,9 +129,22 @@ export function BioPage() {
               description="View my projects and contributions"
               icon={<Github className="h-6 w-6" />}
             />
+            <SocialCard
+              platform="Figma"
+              username="akumadev"
+              link="https://www.figma.com/@akumadev"
+              description="Web designs"
+              icon={<FaFigma className="h-6 w-6" />}
+            />
+            <SocialCard
+              platform="Soundcloud"
+              username="akumadev1"
+              link="soundcloud.com/vyxx1337"
+              description="..."
+              icon={<FaSoundcloud className="h-6 w-6" />}
+            />
           </div>
         )}
-
         {activeSection === 'about' && (
           <div className="rounded-lg bg-zinc-800/50 p-6 backdrop-blur-sm">
             <h2 className="mb-4 text-xl font-bold flex items-center"><Globe className="mr-2" /> About</h2>
@@ -150,7 +153,6 @@ export function BioPage() {
             </p>
           </div>
         )}
-
         {activeSection === 'languages' && (
           <div className="rounded-lg bg-zinc-800/50 p-6 backdrop-blur-sm">
             <h2 className="mb-6 text-xl font-bold flex items-center"><Code className="mr-2" /> Knowledge</h2>
@@ -159,34 +161,29 @@ export function BioPage() {
                 icon={<FaJs className="text-yellow-400" />}
                 name="JavaScript"
                 description="Main Language"
-                experience="3 years of non commercial experience"
-                projects="6+ projects"
+                projects="7+ projects"
               />
               <LanguageCard
                 icon={<SiTypescript className="text-blue-400" />}
                 name="TypeScript"
                 description="Currently Learning"
-                experience="1 year of non commercial experience"
-                projects="2+ projects"
+                projects="7+ projects"
               />
               <LanguageCard
                 icon={<FaReact className="text-cyan-400" />}
                 name="React"
                 description="Best JS Framework"
-                experience="1.5 year of non commercial experience"
-                projects="10+ projects"
+                projects="7+ projects"
               />
               <LanguageCard
-                icon={<SiNodedotjs className="text-green-500" />}
-                name="Node.js"
-                description="Best server based framework"
-                experience="1 year of non commercial experience"
+                icon={<SiNextdotjs className="text-black" />}
+                name="Next.js"
+                description="Best react framework"
                 projects="2 projects"
               />
             </div>
           </div>
         )}
-
         {activeSection === 'projects' && (
           <div className="space-y-6">
             <h2 className="text-xl font-bold flex items-center"><Briefcase className="mr-2" /> Projects</h2>
@@ -227,7 +224,6 @@ export function BioPage() {
     </div>
   )
 }
-
 function SocialCard({
   username,
   link,
@@ -243,7 +239,7 @@ function SocialCard({
   return (
     <Link href={`https://${link}`} className="ml-2">
     <div className="group flex items-center gap-4 rounded-lg bg-zinc-800/50 p-4 backdrop-blur-sm transition-all hover:bg-zinc-800">
-      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-zinc-900/50 transition-all group-hover:bg-zinc-900">
+      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg  transition-all group-hover:bg-zinc-900">
         {icon}
       </div>
       <div className="flex-grow">
@@ -255,7 +251,6 @@ function SocialCard({
     </Link>
   )
 }
-
 function ProjectCard({
   title,
   description,
@@ -301,30 +296,26 @@ function ProjectCard({
     </div>
   )
 }
-
 function LanguageCard({
   icon,
   name,
   description,
-  experience,
   projects,
 }: {
   icon: React.ReactNode
   name: string
   description: string
-  experience: string
   projects: string
 }) {
   return (
     <div className="flex items-start space-x-4 bg-zinc-900/50 p-4 rounded-lg transition-all hover:bg-zinc-900">
-      <div className="flex-shrink-0 w-12 h-12 rounded-full bg-zinc-800 flex items-center justify-center text-3xl">
+      <div className="flex-shrink-0 w-16 h-16 rounded-full  flex items-center justify-center text-3xl">
         {icon}
       </div>
       <div>
         <h3 className="font-bold text-lg mb-1">{name}</h3>
         <p className="text-sm text-gray-300 mb-2 hidden md:block">{description}</p>
         <div className="text-xs text-gray-400">
-          <p>{experience}</p>
           <p>{projects}</p>
         </div>
       </div>

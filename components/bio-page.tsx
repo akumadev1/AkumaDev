@@ -239,7 +239,7 @@ function SocialCard({
   return (
     <Link href={`https://${link}`} className="ml-2">
     <div className="group flex items-center gap-4 rounded-lg bg-zinc-800/50 p-4 backdrop-blur-sm transition-all hover:bg-zinc-800">
-      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg  transition-all group-hover:bg-zinc-900">
+    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-zinc-900/50 transition-all group-hover:bg-zinc-900">
         {icon}
       </div>
       <div className="flex-grow">

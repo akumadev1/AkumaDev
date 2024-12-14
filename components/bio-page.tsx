@@ -188,11 +188,12 @@ export function BioPage() {
           <div className="space-y-6">
             <h2 className="text-xl font-bold flex items-center"><Briefcase className="mr-2" /> Projects</h2>
             <ProjectCard
-              title="Hydra Password Generator"
-              description="Random Password Generator with numbers,symbols "
-              image="/projects/hydra.png"
+              title="Project SZΛRΛ"
+              description="Rebranded Polish School Website "
+              image="/projects/szara.png"
               languages={['React', 'Next.js', 'TailwindCSS','Node.js']}
               repoLink="https://github.com/akumadev1/hydra"
+              isUnderDevelopment={true}
             />
             <ProjectCard
               title="Fire industry company website"
@@ -260,22 +261,24 @@ function ProjectCard({
   image,
   languages,
   repoLink,
+  isUnderDevelopment = false,
 }: {
   title: string
   description: string
   image: string
   languages: string[]
   repoLink: string
+  isUnderDevelopment?: boolean
 }) {
-  return (
-    <div className="overflow-hidden rounded-lg bg-zinc-800/50 backdrop-blur-sm transition-all hover:bg-zinc-800">
-      <div className="aspect-video w-full overflow-hidden">
+  const content = (
+    <>
+      <div className="aspect-video w-full overflow-hidden relative">
         <Image
           src={image}
           alt={title}
           width={1400}
           height={360}
-          className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
       <div className="p-4 md:p-6">
@@ -288,14 +291,30 @@ function ProjectCard({
             </span>
           ))}
         </div>
-        <Link 
-          href={repoLink} 
-          className="inline-flex items-center text-sm text-blue-400 hover:text-blue-300"
-        >
-          <Github className="mr-1 h-4 w-4" />
-          View Repository
-        </Link>
+        {!isUnderDevelopment && (
+          <div className="inline-flex items-center text-sm text-blue-400 group-hover:text-blue-300">
+            <Github className="mr-1 h-4 w-4" />
+            View Repository
+          </div>
+        )}
       </div>
+    </>
+  )
+
+  return (
+    <div className={`group overflow-hidden rounded-lg bg-zinc-800/50 backdrop-blur-sm transition-all hover:bg-zinc-800 relative ${isUnderDevelopment ? 'under-development pointer-events-none' : ''}`}>
+      {isUnderDevelopment ? (
+        <div className="relative">
+          {content}
+          <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+            <span className="text-center text-white text-4xl font-bold">Under Development</span>
+          </div>
+        </div>
+      ) : (
+        <Link href={repoLink}>
+          {content}
+        </Link>
+      )}
     </div>
   )
 }

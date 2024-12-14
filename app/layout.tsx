@@ -15,7 +15,6 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "AkumaDev",
   description: "About Page",
-  themeColor: "#000",
 };
 export default function RootLayout({
   children,

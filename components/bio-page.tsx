@@ -218,8 +218,11 @@ export function BioPage() {
           </div>
         )}
       </div>
-      <div className="flex justify-center gap-8 mt-8" style={{ marginBottom: '-4px' }}>
+      <div className="text-center flex justify-center gap-8 mt-8" style={{ marginBottom: '0.5em' }}>
         <p className='text-xs'>© Akumadev 2024. Icons powered by <a className='text-red-800' target='_blank' href='https://lucide.dev/guide/packages/lucide-react'>Lucide-React</a> and <a target='_blank' className='text-red-800' href='https://react-icons.github.io/react-icons/'>React-Icons</a></p>
+      </div>
+      <div className="text-center flex justify-center gap-4 mt-4" style={{padding:'10px'}}>
+        <p className='text-xs'>This project is Open-Source. Check out the <a href='#' className='text-red-800'>repository.</a></p>
       </div>
     </div>
   )

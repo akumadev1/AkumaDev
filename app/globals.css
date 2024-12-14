@@ -4,12 +4,25 @@
 
 body {
   font-family:'Arial','sans-serif';
+  background:#000;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+.under-development::after {
+  content: 'Under Development';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: bold;
 }
 @keyframes hero-gradient-animation {
   0% {
